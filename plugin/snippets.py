@@ -16,7 +16,7 @@ def getValue(dbName, key):
     conn = sqlite3.connect(dbName)
     cursor = conn.cursor()
 
-    cursor.execute("SELECT value FROM snippets WHERE key=?", (key,))
+    cursor.execute("SELECT value FROM snippets WHERE key LIKE ", (f"%{key}%",))
     result = cursor.fetchone()
     if result:
         value = result[0]
